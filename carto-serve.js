@@ -24,6 +24,8 @@ app.post('/', bodyParser.json(), function(req, res) {
       res.status(422).send(e.toString());
     else
       res.status(500).send(e);
+
+    console.log(e);
   }
 });
 
@@ -63,7 +65,7 @@ app.post('/validate', bodyParser.text(), function(req, res) {
         });
       }
 
-      res.status(422).json(output);
+      res.status(200).json(output);
     } else {
       console.log(e);
       res.status(500).send(e);
