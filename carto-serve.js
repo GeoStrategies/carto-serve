@@ -9,7 +9,7 @@ var argv = require('yargs').argv,
     port = parseInt(argv.p) ? parseInt(argv.p) : 80;
 
 // Convert a MML JSON document into Mapnik XML. Expects the entire input to be a single XML string.
-app.post('/', bodyParser.json(), function(req, res) {
+app.post('/', bodyParser.json({limit: '1mb'}), function(req, res) {
   if (!req.body)
     return res.status(400).send('A valid JSON body is required');
 
@@ -30,7 +30,7 @@ app.post('/', bodyParser.json(), function(req, res) {
 });
 
 // Validate a CartoCSS fragment. Expects the entire input to be a single CartoCSS string.
-app.post('/validate', bodyParser.text(), function(req, res) {
+app.post('/validate', bodyParser.text({limit: '1mb'}), function(req, res) {
   if (!req.body)
     return res.status(400).send('A non-empty string of CartoCSS is required');
 
